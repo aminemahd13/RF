@@ -45,7 +45,7 @@ blocks:
     rot_sym: '4'
     soft_dec_lut: None
     sym_map: '[0, 1, 3, 2]'
-    type: 16qam
+    type: qpsk
   states:
     bus_sink: false
     bus_source: false
@@ -107,7 +107,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    gain: '1.0'
+    gain: '2'
     max_gain: '65536'
     maxoutbuf: '0'
     minoutbuf: '0'
@@ -151,7 +151,7 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     offset: '0'
-    repeat: 'True'
+    repeat: 'False'
     type: byte
     vlen: '1'
   states:
@@ -159,57 +159,6 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [32, 228.0]
-    rotation: 0
-    state: enabled
-- name: blocks_null_sink_0
-  id: blocks_null_sink
-  parameters:
-    affinity: ''
-    alias: ''
-    bus_structure_sink: '[[0,],]'
-    comment: ''
-    num_inputs: '1'
-    type: float
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [744, 768.0]
-    rotation: 0
-    state: enabled
-- name: blocks_null_sink_0_0
-  id: blocks_null_sink
-  parameters:
-    affinity: ''
-    alias: ''
-    bus_structure_sink: '[[0,],]'
-    comment: ''
-    num_inputs: '1'
-    type: float
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [752, 808.0]
-    rotation: 0
-    state: enabled
-- name: blocks_null_sink_0_1
-  id: blocks_null_sink
-  parameters:
-    affinity: ''
-    alias: ''
-    bus_structure_sink: '[[0,],]'
-    comment: ''
-    num_inputs: '1'
-    type: float
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [752, 856.0]
     rotation: 0
     state: enabled
 - name: blocks_pack_k_bits_bb_0
@@ -294,7 +243,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [856, 668.0]
+    coordinate: [992, 708.0]
     rotation: 0
     state: enabled
 - name: channels_channel_model_0
@@ -318,6 +267,22 @@ blocks:
     coordinate: [288, 440.0]
     rotation: 0
     state: enabled
+- name: digital_constellation_decoder_cb_0
+  id: digital_constellation_decoder_cb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    constellation: qam_obj
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [360, 724.0]
+    rotation: 0
+    state: enabled
 - name: digital_constellation_modulator_0
   id: digital_constellation_modulator
   parameters:
@@ -325,7 +290,7 @@ blocks:
     alias: ''
     comment: ''
     constellation: qam_obj
-    differential: 'False'
+    differential: 'True'
     excess_bw: '0.35'
     log: 'False'
     maxoutbuf: '0'
@@ -340,24 +305,21 @@ blocks:
     coordinate: [736, 240.0]
     rotation: 0
     state: enabled
-- name: digital_constellation_receiver_cb_0
-  id: digital_constellation_receiver_cb
+- name: digital_diff_decoder_bb_0
+  id: digital_diff_decoder_bb
   parameters:
     affinity: ''
     alias: ''
+    coding: digital.DIFF_DIFFERENTIAL
     comment: ''
-    constellation: qam_obj
-    fmax: '0'
-    fmin: '0'
-    loop_bw: '0.05'
     maxoutbuf: '0'
     minoutbuf: '0'
-    showports: 'False'
+    modulus: '16'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [336, 684.0]
+    coordinate: [688, 728.0]
     rotation: 0
     state: enabled
 - name: digital_symbol_sync_xx_0
@@ -440,7 +402,7 @@ blocks:
     marker9: '0'
     name: '""'
     nconnections: '1'
-    size: '4096'
+    size: '1024'
     style1: '0'
     style10: '0'
     style2: '0'
@@ -476,7 +438,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [712, 928.0]
+    coordinate: [1536, 368.0]
     rotation: 0
     state: enabled
 - name: qtgui_eye_sink_x_0
@@ -668,15 +630,13 @@ connections:
 - [blocks_unpack_k_bits_bb_0, '0', blocks_pack_k_bits_bb_0, '0']
 - [blocks_unpack_k_bits_bb_1, '0', blocks_pack_k_bits_bb_1, '0']
 - [channels_channel_model_0, '0', analog_agc_xx_0, '0']
+- [digital_constellation_decoder_cb_0, '0', digital_diff_decoder_bb_0, '0']
 - [digital_constellation_modulator_0, '0', blocks_throttle2_0, '0']
-- [digital_constellation_receiver_cb_0, '0', blocks_unpack_k_bits_bb_1, '0']
-- [digital_constellation_receiver_cb_0, '1', blocks_null_sink_0, '0']
-- [digital_constellation_receiver_cb_0, '2', blocks_null_sink_0_0, '0']
-- [digital_constellation_receiver_cb_0, '3', blocks_null_sink_0_1, '0']
-- [digital_constellation_receiver_cb_0, '4', qtgui_const_sink_x_0, '0']
+- [digital_diff_decoder_bb_0, '0', blocks_unpack_k_bits_bb_1, '0']
+- [digital_symbol_sync_xx_0, '0', qtgui_const_sink_x_0, '0']
 - [digital_symbol_sync_xx_0, '0', virtual_sink_1, '0']
 - [virtual_source_0, '0', channels_channel_model_0, '0']
-- [virtual_source_1, '0', digital_constellation_receiver_cb_0, '0']
+- [virtual_source_1, '0', digital_constellation_decoder_cb_0, '0']
 
 metadata:
   file_format: 1

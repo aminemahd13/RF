@@ -147,7 +147,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1384, 212.0]
+    coordinate: [1104, 188.0]
     rotation: 0
     state: enabled
 - name: blocks_char_to_float_1
@@ -290,7 +290,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1064, 264.0]
+    coordinate: [1096, 264.0]
     rotation: 0
     state: enabled
 - name: blocks_stream_to_tagged_stream_0
@@ -756,7 +756,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1640, 180.0]
+    coordinate: [1448, 164.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_1
@@ -941,7 +941,6 @@ connections:
 - [blocks_char_to_float_1, '0', qtgui_time_sink_x_1, '0']
 - [blocks_file_source_0, '0', blocks_stream_to_tagged_stream_0, '0']
 - [blocks_pack_k_bits_bb_1, '0', blocks_file_sink_0, '0']
-- [blocks_packed_to_unpacked_xx_0, '0', blocks_char_to_float_0, '0']
 - [blocks_packed_to_unpacked_xx_0, '0', virtual_sink_0, '0']
 - [blocks_stream_to_tagged_stream_0, '0', epy_block_0, '0']
 - [blocks_throttle2_0, '0', qtgui_sink_x_0, '0']
@@ -959,6 +958,7 @@ connections:
 - [digital_symbol_sync_xx_0, '1', blocks_null_sink_0, '0']
 - [digital_symbol_sync_xx_0, '2', blocks_null_sink_1, '0']
 - [digital_symbol_sync_xx_0, '3', blocks_null_sink_2, '0']
+- [epy_block_0, '0', blocks_char_to_float_0, '0']
 - [epy_block_0, '0', blocks_packed_to_unpacked_xx_0, '0']
 - [virtual_source_0, '0', digital_constellation_modulator_0, '0']
 - [virtual_source_0_0, '0', channels_channel_model_0, '0']

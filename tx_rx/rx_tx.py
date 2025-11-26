@@ -311,7 +311,6 @@ class rx_tx(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_char_to_float_1, 0), (self.qtgui_time_sink_x_1, 0))
         self.connect((self.blocks_file_source_0, 0), (self.blocks_stream_to_tagged_stream_0, 0))
         self.connect((self.blocks_pack_k_bits_bb_1, 0), (self.blocks_file_sink_0, 0))
-        self.connect((self.blocks_packed_to_unpacked_xx_0, 0), (self.blocks_char_to_float_0, 0))
         self.connect((self.blocks_packed_to_unpacked_xx_0, 0), (self.digital_constellation_modulator_0, 0))
         self.connect((self.blocks_stream_to_tagged_stream_0, 0), (self.epy_block_0, 0))
         self.connect((self.blocks_throttle2_0, 0), (self.channels_channel_model_0, 0))
@@ -329,6 +328,7 @@ class rx_tx(gr.top_block, Qt.QWidget):
         self.connect((self.digital_symbol_sync_xx_0, 0), (self.digital_constellation_decoder_cb_0, 0))
         self.connect((self.digital_symbol_sync_xx_0, 0), (self.qtgui_const_sink_x_0, 0))
         self.connect((self.digital_symbol_sync_xx_0, 0), (self.qtgui_sink_x_1, 0))
+        self.connect((self.epy_block_0, 0), (self.blocks_char_to_float_0, 0))
         self.connect((self.epy_block_0, 0), (self.blocks_packed_to_unpacked_xx_0, 0))
 
 
