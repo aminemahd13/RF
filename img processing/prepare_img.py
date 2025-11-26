@@ -2,10 +2,10 @@ from PIL import Image
 import numpy as np
 
 # 1. Settings
-INPUT_IMAGE = "img.jpeg"
+INPUT_IMAGE = "./img processing/img.jpeg"
 OUTPUT_FILE = "img_data.bin"
-WIDTH = 250  # Keep it small for radio testing!
-HEIGHT = 250
+WIDTH = 225  # Keep it small for radio testing!
+HEIGHT = 225
 
 # 2. Open and Resize
 img = Image.open(INPUT_IMAGE)

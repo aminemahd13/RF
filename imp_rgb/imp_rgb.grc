@@ -215,7 +215,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1976, 1892.0]
+    coordinate: [2016, 1876.0]
     rotation: 0
     state: enabled
 - name: blocks_file_sink_0
@@ -425,7 +425,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1080, 1128.0]
+    coordinate: [1104, 1120.0]
     rotation: 0
     state: enabled
 - name: blocks_unpack_k_bits_bb_0
@@ -615,7 +615,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1808, 1884.0]
+    coordinate: [1848, 1876.0]
     rotation: 0
     state: enabled
 - name: digital_protocol_formatter_bb_0

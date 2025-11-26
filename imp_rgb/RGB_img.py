@@ -188,7 +188,7 @@ class RGB_img(gr.top_block, Qt.QWidget):
         self.blocks_null_sink_0 = blocks.null_sink(gr.sizeof_float*1)
         self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, 'C:\\Users\\hp\\Desktop\\RF\\img processing\\img_data.bin', True, 0, 0)
         self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
-        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, 'C:\\Users\\hp\\Desktop\\RF\\img processing\\recieve_data.bin', False)
+        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, 'C:\\Users\\hp\\Desktop\\RF\\img processing\\recievecc_data.bin', False)
         self.blocks_file_sink_0.set_unbuffered(False)
         self.blocks_char_to_float_0 = blocks.char_to_float(1, 1)
         self.analog_agc_xx_0 = analog.agc_cc((1e-4), 3.2, 1.0, 65536)

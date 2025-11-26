@@ -67,8 +67,8 @@ class RGB_img(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.symbol_rate = symbol_rate = 5e3
-        self.samp_rate = samp_rate = 50e3
+        self.symbol_rate = symbol_rate = 5e5
+        self.samp_rate = samp_rate = 1e6
         self.sps = sps = int(samp_rate/symbol_rate)
         self.qam_order = qam_order = 16
         self.qam_obj = qam_obj = digital.constellation_16qam().base()
@@ -110,7 +110,7 @@ class RGB_img(gr.top_block, Qt.QWidget):
 
         self.qtgui_eye_sink_x_0.enable_tags(True)
         self.qtgui_eye_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
-        self.qtgui_eye_sink_x_0.enable_autoscale(False)
+        self.qtgui_eye_sink_x_0.enable_autoscale(True)
         self.qtgui_eye_sink_x_0.enable_grid(False)
         self.qtgui_eye_sink_x_0.enable_axis_labels(True)
         self.qtgui_eye_sink_x_0.enable_control_panel(False)
@@ -199,7 +199,7 @@ class RGB_img(gr.top_block, Qt.QWidget):
             digital.IR_MMSE_8TAP,
             128,
             [])
-        self.digital_constellation_receiver_cb_0 = digital.constellation_receiver_cb(qam_obj, 0.0, 0, 0)
+        self.digital_constellation_receiver_cb_0 = digital.constellation_receiver_cb(qam_obj, 0.05, 0, 0)
         self.digital_constellation_modulator_0 = digital.generic_mod(
             constellation=qam_obj,
             differential=False,
@@ -224,11 +224,11 @@ class RGB_img(gr.top_block, Qt.QWidget):
         self.blocks_null_sink_0_1 = blocks.null_sink(gr.sizeof_float*1)
         self.blocks_null_sink_0_0 = blocks.null_sink(gr.sizeof_float*1)
         self.blocks_null_sink_0 = blocks.null_sink(gr.sizeof_float*1)
-        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, 'C:\\Users\\hp\\Desktop\\RF\\img processing\\img_data.bin', False, 0, 0)
+        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, 'C:\\Users\\hp\\Desktop\\RF\\img processing\\img_data.bin', True, 0, 0)
         self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
         self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, 'C:\\Users\\hp\\Desktop\\RF\\img processing\\recieve_data.bin', False)
         self.blocks_file_sink_0.set_unbuffered(False)
-        self.analog_agc_xx_0 = analog.agc_cc((1e-4), 3.2, 1.0, 65536)
+        self.analog_agc_xx_0 = analog.agc_cc((1e-4), 1, 1.0, 65536)
 
 
         ##################################################
